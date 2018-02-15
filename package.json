@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.js --exec babel-node --presets es2015,stage-2",
+    "start": "babel-node src/index.js --presets es2015,stage-2",
     "relay": "relay-compiler --src ./src/frontend --schema ./src/schema.json",
     "front": "webpack-dev-server --config ./webpack.config.js --hot --contentBase public"
   },
@@ -23,6 +23,7 @@
     "express-graphql": "^0.6.11",
     "graphql": "^0.12.3",
     "graphql-relay": "^0.5.4",
+    "graphql-subscriptions": "^0.5.7",
     "nodemon": "^1.14.11",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

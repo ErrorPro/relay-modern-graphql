@@ -1,5 +1,6 @@
 import { GraphQLSchema, GraphQLObjectType } from 'graphql';
 import { connectionDefinitions } from 'graphql-relay';
+import { PubSub } from 'graphql-subscriptions';
 import * as queries from './queries';
 import * as types from './types';
 
@@ -7,6 +8,13 @@ const all = {
   ...queries,
   ...types,
 };
+
+const pubsub = new PubSub();
+
+setInterval(() => {
+   pubsub.publish('test', { id: "123", name: 'Test' });
+   console.log('publish');
+}, 5000);
 
 const refs = Object.keys(types).reduce((acc, key) => {
   acc[key] = all[key](acc);
@@ -27,5 +35,14 @@ export default new GraphQLSchema({
 
       return acc;
     }, {}),
+  }),
+  subscription: new GraphQLObjectType({
+    name: 'Subscribe',
+    fields: {
+      newUser: {
+        type: refs.user,
+        subscribe: () => pubsub.asyncIterator('test'),
+      },
+    },
   }),
 });
