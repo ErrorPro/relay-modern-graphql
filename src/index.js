@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const graphqlHTTP = require('express-graphql');
 const schema = require('./graphQL').default;
+const cors = require('cors');
 
 const db = {
   users: new Array(100).fill().map((e, i) => ({
@@ -9,6 +10,8 @@ const db = {
     name: `User ${i + 1}`,
   })),
 }
+
+app.use(cors());
 
 app.use('/graphql', graphqlHTTP({
   schema,

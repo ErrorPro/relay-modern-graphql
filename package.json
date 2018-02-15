@@ -4,16 +4,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.js --exec babel-node --presets es2015,stage-2"
+    "start": "nodemon src/index.js --exec babel-node --presets es2015,stage-2",
+    "relay": "relay-compiler --src ./src/frontend --schema ./src/schema.json",
+    "front": "webpack-dev-server --config ./webpack.config.js --hot --contentBase public"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
     "express-graphql": "^0.6.11",
     "graphql": "^0.12.3",
@@ -21,6 +26,13 @@
     "nodemon": "^1.14.11",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-relay": "^1.4.1"
+    "react-relay": "^1.4.1",
+    "relay-compose": "^1.0.8",
+    "webpack": "^3.11.0"
+  },
+  "devDependencies": {
+    "babel-plugin-relay": "^1.4.1",
+    "relay-compiler": "^1.4.1",
+    "webpack-dev-server": "^2.11.1"
   }
 }

@@ -6,7 +6,7 @@ import * as types from './types';
 const all = {
   ...queries,
   ...types,
-}
+};
 
 const refs = Object.keys(types).reduce((acc, key) => {
   acc[key] = all[key](acc);
